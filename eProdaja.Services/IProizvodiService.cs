@@ -1,4 +1,8 @@
-﻿using System;
+﻿
+using eProdaja.Model;
+using eProdaja.Model.Requests;
+using eProdaja.Model.SearchObjects;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,9 +10,11 @@ using System.Threading.Tasks;
 
 namespace eProdaja.Services
 {
-    public interface IProizvodiService
+    public interface IProizvodiService : ICRUDService<Proizvodi, ProizvodiSearchObject, ProizvodiInsertRequest, ProizvodiUpdateRequest>
     {
-        IEnumerable<Proizvodi> Get();
-        public Proizvodi GetById(int id);
+        Model.Proizvodi Activate(int id);
+        List<string> AllowedActions(int id);
+
+        List<Model.Proizvodi> Recommend(int id);
     }
 }
